@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "title": "World Happiness Score 2020)",
+  "title": "World Happiness Score 2020",
   "width": 800,
   "height": 500,
   "data": {
@@ -9,7 +9,7 @@
   },
   "transform": [
     {
-      "lookup": "properties.NAME_LONG",
+      "lookup": "properties.NAME",
       "from": {
         "data": {
           "url": "https://raw.githubusercontent.com/kahping98/fit3179_vega_lite/main/week_9_homework/data/WHR20_DataForFigure2.1.csv"
