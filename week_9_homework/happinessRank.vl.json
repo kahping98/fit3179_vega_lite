@@ -1,0 +1,58 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 600,
+  "height": 1800,
+  "title": "Ranking of Happiness",
+  "data": {
+    "url": "https://raw.githubusercontent.com/kahping98/fit3179_vega_lite/main/week_9_homework/data/WHR20_DataForFigure2.1.csv"
+  },
+  "transform": [
+    {
+      "fold": [
+        "Explained_by:_Log_GDP_per_capita",
+        "Explained_by:_Social_support",
+        "Explained_by:_Healthy_life_expectancy",
+        "Explained_by:_Freedom_to_ make_life_choices",
+        "Explained_by:_Generosity",
+        "Explained_by:_Perceptions_of_corruption",
+        "Dystopia_+_residual"
+      ]
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {"aggregate": "sum", "field": "value"},
+    "y": {
+      "field": "Country_Name",
+      "type": "ordinal",
+      "title": "Country",
+      "sort": "-x"
+    },
+    "color": {
+      "field": "key",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Explained_by:_Log_GDP_per_capita",
+          "Explained_by:_Social_support",
+          "Explained_by:_Healthy_life_expectancy",
+          "Explained_by:_Freedom_to_ make_life_choices",
+          "Explained_by:_Generosity",
+          "Explained_by:_Perceptions_of_corruption",
+          "Dystopia_+_residual"
+        ],
+        "range": [
+          "#8dd3c7",
+          "#ffffb3",
+          "#bebada",
+          "#fb8072",
+          "#80b1d3",
+          "#fdb462",
+          "#b2df8a"
+        ]
+      },
+      "title": "Happiness Metrics"
+    }
+  },
+  "config": {"viewport": [400, 600]}
+}
