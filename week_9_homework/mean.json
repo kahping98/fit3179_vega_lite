@@ -2,6 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "width": 600,
   "height": 400,
+  "title": "Mean Happiness Metrics values in each Region",
   "data": {
     "url": "https://raw.githubusercontent.com/kahping98/fit3179_vega_lite/main/week_9_homework/data/WHR20_DataForFigure2.1.csv"
   },
@@ -24,7 +25,7 @@
           "East Asia"
         ],
         "labels": [
-          "Show all",
+          "All",
           "South Asia",
           "Central and Eastern Europe",
           "Middle East and North Africa",
@@ -72,7 +73,7 @@
       ]
     },
     {"calculate": "datum.Country_Name", "as": "Country Name"},
-    {"calculate": "datum.key", "as": "Variable"},
+    {"calculate": "datum.key", "as": "Happiness Metrics"},
     {"calculate": "datum.value", "as": "Value"},
     {
       "filter": "Region_Selection == null || datum.Regional_Indicator == Region_Selection"
@@ -83,17 +84,27 @@
       "aggregate": "average",
       "field": "Value",
       "type": "quantitative",
-      "title": "Average Score",
+      "title": "Mean Score",
       "axis": {"tickCount": 10}
     },
-    "y": {"field": "key", "type": "nominal", "title": "Variables"},
+    "y": {"field": "key", "type": "nominal", "title": "Happiness Metrics"},
     "tooltip": [
-      {"aggregate": "min", "field": "Value", "format": ".2f"},
-      {"aggregate": "max", "field": "Value", "format": ".2f"}
+      {
+        "aggregate": "min",
+        "field": "Value",
+        "format": ".2f",
+        "title": "Min value"
+      },
+      {
+        "aggregate": "max",
+        "field": "Value",
+        "format": ".2f",
+        "title": "Max value"
+      }
     ]
   },
   "layer": [
-    {"mark": "bar"},
+    {"mark": "bar", "encoding": {"color": {"field": "Happiness Metrics"}}},
     {
       "mark": {
         "type": "text",
