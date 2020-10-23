@@ -7,22 +7,26 @@
 </head>
 
 <body>  
-  <div id="vis"></div>
+	<h1>FIT3179 Week 10 Homework </h1>
+	
+	
+	
+  <div id="choropleth_map"></div>
   
   <script>
-    const spec = "visualization.vl.json";
-  	vegaEmbed("#vis", spec)
+    var vis1 = "Map.json";
+  	vegaEmbed("#choropleth_map", vis1)
     	// result.view provides access to the Vega View API
       .then(result => console.log(result))
       .catch(console.warn);
   </script>
 	
 
-  <div id="vis"></div>
+  <div id="bar"></div>
   
   <script>
-    const spec = "happinessRank.vl.json";
-  	vegaEmbed("#vis", spec)
+    var vis2 = "mean.json";
+  	vegaEmbed("#bar", vis2)
     	// result.view provides access to the Vega View API
       .then(result => console.log(result))
       .catch(console.warn);
