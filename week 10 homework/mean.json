@@ -1,0 +1,128 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 600,
+  "height": 400,
+  "title": "Mean Happiness Metrics values in each Region",
+  "data": {
+    "url": "https://raw.githubusercontent.com/kahping98/fit3179_vega_lite/main/week_9_homework/data/WHR20_DataForFigure2.1.csv"
+  },
+  "params": [
+    {
+      "name": "Region_Selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "South Asia",
+          "Central and Eastern Europe",
+          "Middle East and North Africa",
+          "Latin America and Caribbean",
+          "Commonwealth of Independent States",
+          "North America and ANZ",
+          "Western Europe",
+          "Sub-Saharan Africa",
+          "Southeast Asia",
+          "East Asia"
+        ],
+        "labels": [
+          "All",
+          "South Asia",
+          "Central and Eastern Europe",
+          "Middle East and North Africa",
+          "Latin America and Caribbean",
+          "Commonwealth of Independent States",
+          "North America and ANZ",
+          "Western Europe",
+          "Sub-Saharan Africa",
+          "Southeast Asia",
+          "East Asia"
+        ],
+        "name": "Region: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "calculate": "datum.Explained_by_Log_GDP_per_capita",
+      "as": "Log GDP per capita"
+    },
+    {"calculate": "datum.Explained_by_Social_support", "as": "Social support"},
+    {
+      "calculate": "datum.Explained_by_Healthy_life_expectancy",
+      "as": "Healthy life expectancy"
+    },
+    {
+      "calculate": "datum.Explained_by_Freedom_to_make_life_choices",
+      "as": "Freedom to make life choices"
+    },
+    {"calculate": "datum.Explained_by_Generosity", "as": "Generosity"},
+    {
+      "calculate": "datum.Explained_by_Perceptions_of_corruption",
+      "as": "Perceptions of corruption"
+    },
+    {"calculate": "datum.Dystopia_and_residual", "as": "Dystopia and residual"},
+    {
+      "fold": [
+        "Log GDP per capita",
+        "Social support",
+        "Healthy life expectancy",
+        "Freedom to make life choices",
+        "Generosity",
+        "Perceptions of corruption",
+        "Dystopia and residual"
+      ]
+    },
+    {"calculate": "datum.Country_Name", "as": "Country Name"},
+    {"calculate": "datum.key", "as": "Happiness Metrics"},
+    {"calculate": "datum.value", "as": "Value"},
+    {
+      "filter": "Region_Selection == null || datum.Regional_Indicator == Region_Selection"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "aggregate": "average",
+      "field": "Value",
+      "type": "quantitative",
+      "title": "Mean Score",
+      "axis": {"tickCount": 10}
+    },
+    "y": {"field": "key", "type": "nominal", "title": "Happiness Metrics"},
+    "tooltip": [
+      {
+        "aggregate": "min",
+        "field": "Value",
+        "format": ".2f",
+        "title": "Min value"
+      },
+      {
+        "aggregate": "max",
+        "field": "Value",
+        "format": ".2f",
+        "title": "Max value"
+      }
+    ]
+  },
+  "layer": [
+    {"mark": "bar", "encoding": {"color": {"field": "Happiness Metrics"}}},
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "xOffset": -5,
+        "baseline": "middle",
+        "dx": 3
+      },
+      "encoding": {
+        "text": {
+          "aggregate": "average",
+          "field": "Value",
+          "type": "quantitative",
+          "format": ".2f"
+        },
+        "color": {"value": "white"}
+      }
+    }
+  ],
+  "config": {}
+}
