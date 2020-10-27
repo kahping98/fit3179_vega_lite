@@ -1,6 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "title": "World Happiness Score 2020",
+  "title": {
+    "text": "World Happiness Score 2020",
+    "font": "sans-serif",
+    "fontSize": 18,
+    "fontWeight" : 700,
+    "dx": -275},
   "width": 800,
   "height": 500,
   "layer": [
