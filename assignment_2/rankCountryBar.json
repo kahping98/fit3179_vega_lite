@@ -4,7 +4,7 @@
     "text": "Happiness Score by Country",
     "font": "sans-serif",
     "fontSize": 18,
-    "fontWeight": 800
+    "fontWeight": 700
   },
   "data": {
     "url": "https://raw.githubusercontent.com/kahping98/fit3179_vega_lite/main/week_9_homework/data/WHR20_DataForFigure2.1.csv"
