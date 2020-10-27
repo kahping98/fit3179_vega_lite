@@ -46,7 +46,7 @@
   ],
   "vconcat": [
     {
-      "width": 1250,
+      "width": 1300,
       "transform": [{"filter": {"selection": "brush"}}],
       "mark": "bar",
       "encoding": {
@@ -95,7 +95,7 @@
     },
     {
       "height": 50,
-      "width": 1250,
+      "width": 1300,
       "selection": {"brush": {"type": "interval", "encodings": ["x"]}},
       "mark": "bar",
       "encoding": {
