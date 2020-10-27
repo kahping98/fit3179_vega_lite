@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "width": 370,
+  "width": 550,
   "height": 450,
   "title": {
     "text": "Mean Happiness Metrics values by Region",
