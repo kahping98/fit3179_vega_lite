@@ -1,8 +1,14 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "width": 600,
-  "height": 400,
-  "title": "Mean Happiness Metrics values in each Region",
+  "height": 500,
+  "title": {
+    "text": "Mean Happiness Metrics values by Region",
+    "font": "sans-serif",
+    "fontSize": 18,
+    "fontWeight": 700,
+    "dx": -300
+  },
   "data": {
     "url": "https://raw.githubusercontent.com/kahping98/fit3179_vega_lite/main/week_9_homework/data/WHR20_DataForFigure2.1.csv"
   },
@@ -143,5 +149,12 @@
       }
     }
   ],
-  "config": {}
+  "config": {
+    "axis": {
+      "labelFont": "sans-serif",
+      "labelFontSize": 11,
+      "titleFont": "sans-serif",
+      "titleFontSize": 15
+    }
+  }
 }
