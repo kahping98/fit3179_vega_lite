@@ -1,0 +1,120 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": {
+    "text": "Happiness Score by Country",
+    "font": "sans-serif",
+    "fontSize": 18,
+    "fontWeight": 800
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/kahping98/fit3179_vega_lite/main/week_9_homework/data/WHR20_DataForFigure2.1.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum.Explained_by_Log_GDP_per_capita",
+      "as": "Log GDP per capita"
+    },
+    {"calculate": "datum.Explained_by_Social_support", "as": "Social support"},
+    {
+      "calculate": "datum.Explained_by_Healthy_life_expectancy",
+      "as": "Healthy life expectancy"
+    },
+    {
+      "calculate": "datum.Explained_by_Freedom_to_make_life_choices",
+      "as": "Freedom to make life choices"
+    },
+    {"calculate": "datum.Explained_by_Generosity", "as": "Generosity"},
+    {
+      "calculate": "datum.Explained_by_Perceptions_of_corruption",
+      "as": "Perceptions of corruption"
+    },
+    {"calculate": "datum.Dystopia_and_residual", "as": "Dystopia and residual"},
+    {
+      "fold": [
+        "Log GDP per capita",
+        "Social support",
+        "Healthy life expectancy",
+        "Freedom to make life choices",
+        "Generosity",
+        "Perceptions of corruption",
+        "Dystopia and residual"
+      ]
+    },
+    {"calculate": "datum.Country_Name", "as": "Country Name"},
+    {"calculate": "datum.key", "as": "Variable"},
+    {"calculate": "datum.value", "as": "Value"}
+  ],
+  "vconcat": [
+    {
+      "width": 1100,
+      "transform": [{"filter": {"selection": "brush"}}],
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "aggregate": "sum",
+          "field": "value",
+          "axis": {"title": "Ladder Score"}
+        },
+        "x": {
+          "field": "Country_Name",
+          "type": "ordinal",
+          "title": "Country",
+          "sort": "-y"
+        },
+        "color": {
+          "field": "key",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Log GDP per capita",
+              "Social support",
+              "Healthy life expectancy",
+              "Freedom to make life choices",
+              "Generosity",
+              "Perceptions of corruption",
+              "Dystopia and residual"
+            ],
+            "range": [
+              "#8dd3c7",
+              "#fb8072",
+              "#b3de69",
+              "#80b1d3",
+              "#fdb462",
+              "#bebada",
+              "#ffd92f"
+            ]
+          },
+          "title": "Happiness Metrics"
+        },
+        "tooltip": [
+          {"field": "Country Name", "type": "nominal"},
+          {"field": "Variable", "type": "nominal"},
+          {"field": "Value", "type": "quantitative", "format": ".2f"}
+        ]
+      }
+    },
+    {
+      "height": 50,
+      "width": 1100,
+      "selection": {"brush": {"type": "interval", "encodings": ["x"]}},
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "Country_Name",
+          "type": "ordinal",
+          "sort": "-y",
+          "axis": null
+        },
+        "y": {"aggregate": "sum", "field": "value", "axis": null}
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "labelFont": "sans-serif",
+      "labelFontSize": 11,
+      "titleFont": "sans-serif",
+      "titleFontSize": 15
+    }
+  }
+}
