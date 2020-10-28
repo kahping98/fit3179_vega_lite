@@ -1,13 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "title": {
-    "text": "World Happiness Score 2020",
-    "font": "sans-serif",
-    "fontSize": 18,
-    "fontWeight" : 700,
-    "dx": -275},
-  "width": 850,
-  "height": 500,
+  "width": 450,
+  "height": 300,
   "layer": [
     {
       "data": {
@@ -44,7 +38,7 @@
           "scale": {
             "type": "threshold",
             "domain": [4, 5.5, 7],
-            "range": ["#fef0d9", "#fdcc8a", "#fc8d59", "#e34a33"]
+            "range": ["#ffffb2", "#fed976", "#feb24c", "#fd8d3c"]
           }
         },
         "tooltip": [
