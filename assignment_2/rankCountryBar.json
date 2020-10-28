@@ -75,13 +75,13 @@
               "Dystopia and residual"
             ],
             "range": [
-              "#8dd3c7",
+              "#fdb462",
+              "#ffd92f",
+              "#80b1d3",
               "#fb8072",
               "#b3de69",
-              "#80b1d3",
-              "#fdb462",
               "#bebada",
-              "#ffd92f"
+              "#8dd3c7"
             ]
           },
           "title": "Happiness Metrics"
