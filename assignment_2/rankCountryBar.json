@@ -2,7 +2,42 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "data": {
     "url": "https://raw.githubusercontent.com/kahping98/fit3179_vega_lite/main/week_9_homework/data/WHR20_DataForFigure2.1.csv"
-  },
+  },  
+  "params": [
+    {
+      "name": "Region_Selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Central and Eastern Europe",
+          "Commonwealth of Independent States",
+          "East Asia",
+          "Latin America and Caribbean",
+          "Middle East and North Africa",
+          "North America and ANZ",
+          "South Asia",
+          "Southeast Asia",
+          "Sub-Saharan Africa",
+          "Western Europe"
+        ],
+        "labels": [
+          "Show All",
+          "Central and Eastern Europe",
+          "Commonwealth of Independent States",
+          "East Asia",
+          "Latin America and Caribbean",
+          "Middle East and North Africa",
+          "North America and ANZ",
+          "South Asia",
+          "Southeast Asia",
+          "Sub-Saharan Africa",
+          "Western Europe"
+        ],
+        "name": "Region: "
+      }
+    }
+  ],
   "transform": [
     {
       "calculate": "datum.Explained_by_Log_GDP_per_capita",
@@ -36,12 +71,13 @@
     },
     {"calculate": "datum.Country_Name", "as": "Country Name"},
     {"calculate": "datum.key", "as": "Variable"},
-    {"calculate": "datum.value", "as": "Value"}
-  ],
-  "vconcat": [
+    {"calculate": "datum.value", "as": "Value"},
     {
+      "filter": "Region_Selection == null || datum.Regional_Indicator == Region_Selection"
+    }
+  ],
       "width": 1000,
-      "transform": [{"filter": {"selection": "brush"}}],
+      "height": 250,
       "mark": "bar",
       "encoding": {
         "y": {
@@ -53,7 +89,8 @@
           "field": "Country_Name",
           "type": "ordinal",
           "title": "Country",
-          "sort": "-y"
+          "sort": "-y",
+          "axis": {"labelAngle": -90}
         },
         "color": {
           "field": "key",
@@ -86,27 +123,11 @@
           {"field": "Value", "type": "quantitative", "format": ".2f"}
         ]
       }
-    },
-    {
-      "height": 50,
-      "width": 1000,
-      "selection": {"brush": {"type": "interval", "encodings": ["x"]}},
-      "mark": "bar",
-      "encoding": {
-        "x": {
-          "field": "Country_Name",
-          "type": "ordinal",
-          "sort": "-y",
-          "axis": null
-        },
-        "y": {"aggregate": "sum", "field": "value", "axis": null}
-      }
-    }
-  ],
+    ,
   "config": {
     "axis": {
       "labelFont": "sans-serif",
-      "labelFontSize": 11,
+      "labelFontSize": 10,
       "titleFont": "sans-serif",
       "titleFontSize": 15
     }
