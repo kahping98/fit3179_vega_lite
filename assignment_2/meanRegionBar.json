@@ -86,7 +86,8 @@
       "title": "Mean Score",
       "axis": {"tickCount": 10}
     },
-    "y": {"field": "key", "type": "nominal", "title": "Happiness Metrics"},
+    "y": {"field": "key", "type": "nominal", "title": "Happiness Metrics",
+    "sort": "-x"},
     "tooltip": [
       {
         "aggregate": "min",
